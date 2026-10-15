@@ -9,6 +9,35 @@
       Title="ServisPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Orientation ="Horizontal" HorizontalAlignment ="Center">
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock Text="Ведите название для поиска" TextAlignment="Right" Width ="300" FontSize="20"></TextBlock>
+                <TextBox Text="TBoxSearch" TextChanged="TextBox_TextChanged" Width="300" FontSize="15"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock Text="Ведите название для поиска" TextAlignment="Right" Width ="300" FontSize="20"></TextBlock>
+                <ComboBox Text="ComboType" SelectionChanged="ComboType_SelectionChanged" Width="200" FontSize="15">
+                    <TextBlock>Все</TextBlock>
+                    <TextBlock>от 0 до 5%</TextBlock>
+                    <TextBlock>от 5 до 15%</TextBlock>
+                    <TextBlock>от 15 до 30%</TextBlock>
+                    <TextBlock>от 30 до 70%</TextBlock>
+                    <TextBlock>от 70 до 100%</TextBlock>
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5">
+            
+        </StackPanel>
+        
+        
+
         <ListView Name="ServiceListView" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
