@@ -33,12 +33,13 @@
             </StackPanel>
         </WrapPanel>
         <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5">
-            
+            <RadioButton Content="По возрастанию стоимости" GroupName="Sort" Name ="RButtonUp" Width="300" FontSize="20" Checked="RButtonUp_Checked"></RadioButton>
+            <RadioButton Content="По убыванию стоимости" GroupName="Sort" Name ="RButtonDown" Width="300" FontSize="20" Checked="RButtonDown_Checked"></RadioButton>
         </StackPanel>
         
         
 
-        <ListView Name="ServiceListView" >
+        <ListView Name="ServiceListView" Grid.Row="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>

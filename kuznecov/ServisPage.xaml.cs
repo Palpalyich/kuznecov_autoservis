@@ -49,5 +49,15 @@ namespace kuznecov
         {
 
         }
+
+        private void RButtonUp_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RButtonDown_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
