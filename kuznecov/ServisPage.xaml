@@ -17,12 +17,12 @@
         <WrapPanel Orientation ="Horizontal" HorizontalAlignment ="Center">
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Text="Ведите название для поиска" TextAlignment="Right" Width ="300" FontSize="20"></TextBlock>
-                <TextBox Text="TBoxSearch" TextChanged="TextBox_TextChanged" Width="300" FontSize="15"></TextBox>
+                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" Width="300" FontSize="15"></TextBox>
             </StackPanel>
 
             <StackPanel Margin="10" Orientation="Horizontal">
-                <TextBlock Text="Ведите название для поиска" TextAlignment="Right" Width ="300" FontSize="20"></TextBlock>
-                <ComboBox Text="ComboType" SelectionChanged="ComboType_SelectionChanged" Width="200" FontSize="15">
+                <TextBlock Text="Выберете название для поиска" TextAlignment="Right" Width ="300" FontSize="20"></TextBlock>
+                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged" Width="200" FontSize="15">
                     <TextBlock>Все</TextBlock>
                     <TextBlock>от 0 до 5%</TextBlock>
                     <TextBlock>от 5 до 15%</TextBlock>
@@ -69,7 +69,7 @@
                             <TextBlock Text = "{Binding Title}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"/>
                             <TextBlock Text = "{Binding Cost, StringFormat={}{0:0} рублей за}"     Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                             <TextBlock Text = "{Binding DurationIn}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" FontSize="20"/>
-                            <TextBlock Text = "{Binding Discount, StringFormat=*скидка {0} % }" Opacity="{Binding Discount}" Margin="5" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                            <TextBlock Text = "{Binding Discount, StringFormat= '*скидка {0:P0} %'}" Opacity="{Binding Discount}" Margin="5" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
 
 
                             <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
