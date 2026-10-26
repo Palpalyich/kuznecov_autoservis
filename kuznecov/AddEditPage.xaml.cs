@@ -55,8 +55,13 @@ namespace kuznecov
                     return;
             }
 
+
+            _currentServise.Discount /= 100;
+
             if (_currentServise.ID == 0)
+                
                 Kuznecov_DBEntities.GetContext().Service.Add(_currentServise);
+
 
             try
             {
