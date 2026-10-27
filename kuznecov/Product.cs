@@ -16,9 +16,10 @@ namespace kuznecov
     {
         public Product()
         {
-            this.AttachedProduct = new HashSet<AttachedProduct>();
             this.ProductPhoto = new HashSet<ProductPhoto>();
             this.ProductSale = new HashSet<ProductSale>();
+            this.Product1 = new HashSet<Product>();
+            this.Product2 = new HashSet<Product>();
         }
     
         public int ID { get; set; }
@@ -29,9 +30,10 @@ namespace kuznecov
         public bool IsActive { get; set; }
         public Nullable<int> ManufacturerID { get; set; }
     
-        public virtual ICollection<AttachedProduct> AttachedProduct { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual ICollection<ProductPhoto> ProductPhoto { get; set; }
         public virtual ICollection<ProductSale> ProductSale { get; set; }
+        public virtual ICollection<Product> Product1 { get; set; }
+        public virtual ICollection<Product> Product2 { get; set; }
     }
 }

@@ -80,60 +80,60 @@
     <Compile Include="AddEditPage.xaml.cs">
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AttachedProduct.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Client.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientService.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="DocumentByService.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="Gender.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kuznecov_Autoservis.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kuznecov_Autoservis.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kuznecov_Autoservis.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kuznecov_Autoservis.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kuznecov_Autoservis.edmx</DependentUpon>
     </Compile>
     <Compile Include="Mananger.cs" />
     <Compile Include="Manufacturer.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kuznecov_autoservese.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Kuznecov_autoservese.edmx</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductPhoto.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductSale.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="Service.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="ServicePhoto.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Compile Include="ServisPage.xaml.cs">
       <DependentUpon>ServisPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tag.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Kuznecov_Autoservis.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
       <SubType>Designer</SubType>
@@ -152,6 +152,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ServisPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,12 +178,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Kuznecov_autoservese.edmx">
+    <EntityDeploy Include="Kuznecov_Autoservis.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Kuznecov_autoservese.Designer.cs</LastGenOutput>
+      <LastGenOutput>Kuznecov_Autoservis.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Kuznecov_autoservese.edmx.diagram">
-      <DependentUpon>Kuznecov_autoservese.edmx</DependentUpon>
+    <None Include="Kuznecov_Autoservis.edmx.diagram">
+      <DependentUpon>Kuznecov_Autoservis.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -230,15 +234,17 @@
     <Resource Include="Услуги автосервиса\Шиномонтаж.jpg" />
     <Resource Include="Услуги автосервиса\Электрика.png" />
     <Resource Include="image\picture.png" />
-    <Content Include="Model1.Context.tt">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Kuznecov_Autoservis.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Kuznecov_autoservese.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Kuznecov_Autoservis.edmx</DependentUpon>
+      <LastGenOutput>Kuznecov_Autoservis.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="Kuznecov_Autoservis.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Kuznecov_autoservese.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>Kuznecov_Autoservis.edmx</DependentUpon>
+      <LastGenOutput>Kuznecov_Autoservis.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -98,9 +98,9 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MainImagePath" Type="nvarchar" MaxLength="1000" />
-          <Property Name="DurationIn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DurationIn" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Discount" Type="float" />
+          <Property Name="Discount" Type="float" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="ServicePhoto">
@@ -136,6 +136,18 @@
             </Principal>
             <Dependent Role="AttachedProduct">
               <PropertyRef Name="MainProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttachedProduct_Product1">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="AttachedProduct" Type="Self.AttachedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AttachedProduct">
+              <PropertyRef Name="AttachedProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -289,6 +301,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="AttachedProduct" EntitySet="AttachedProduct" />
           </AssociationSet>
+          <AssociationSet Name="FK_AttachedProduct_Product1" Association="Self.FK_AttachedProduct_Product1">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="AttachedProduct" EntitySet="AttachedProduct" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Client" EntitySet="Client" />
@@ -339,15 +355,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KuznecovAutoservisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AttachedProduct">
-          <Key>
-            <PropertyRef Name="MainProductID" />
-            <PropertyRef Name="AttachedProductID" />
-          </Key>
-          <Property Name="MainProductID" Type="Int32" Nullable="false" />
-          <Property Name="AttachedProductID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_AttachedProduct_Product" FromRole="AttachedProduct" ToRole="Product" />
-        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ID" />
@@ -417,10 +424,11 @@
           <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="ManufacturerID" Type="Int32" />
-          <NavigationProperty Name="AttachedProduct" Relationship="Self.FK_AttachedProduct_Product" FromRole="Product" ToRole="AttachedProduct" />
           <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
           <NavigationProperty Name="ProductPhoto" Relationship="Self.FK_ProductPhoto_Product" FromRole="Product" ToRole="ProductPhoto" />
           <NavigationProperty Name="ProductSale" Relationship="Self.FK_ProductSale_Product" FromRole="Product" ToRole="ProductSale" />
+          <NavigationProperty Name="Product1" Relationship="Self.AttachedProduct" FromRole="Product" ToRole="Product1" />
+          <NavigationProperty Name="Product2" Relationship="Self.AttachedProduct" FromRole="Product1" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProductPhoto">
           <Key>
@@ -450,9 +458,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="DurationIn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DurationIn" Type="Int32" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Discount" Type="Double" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
           <NavigationProperty Name="ServicePhoto" Relationship="Self.FK_ServicePhoto_Service" FromRole="Service" ToRole="ServicePhoto" />
@@ -475,18 +483,6 @@
           <Property Name="Color" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.TagOfClient" FromRole="Tag" ToRole="Client" />
         </EntityType>
-        <Association Name="FK_AttachedProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="AttachedProduct" Type="Self.AttachedProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AttachedProduct">
-              <PropertyRef Name="MainProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Client_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
@@ -595,12 +591,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="AttachedProduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="Product1" Type="Self.Product" Multiplicity="*" />
+        </Association>
         <Association Name="TagOfClient">
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
           <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
         </Association>
         <EntityContainer Name="Kuznecov_DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AttachedProduct" EntityType="Self.AttachedProduct" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="ClientService" EntityType="Self.ClientService" />
           <EntitySet Name="DocumentByService" EntityType="Self.DocumentByService" />
@@ -612,10 +611,6 @@
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="ServicePhoto" EntityType="Self.ServicePhoto" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
-          <AssociationSet Name="FK_AttachedProduct_Product" Association="Self.FK_AttachedProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="AttachedProduct" EntitySet="AttachedProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Client" EntitySet="Client" />
@@ -652,6 +647,10 @@
             <End Role="Service" EntitySet="Service" />
             <End Role="ServicePhoto" EntitySet="ServicePhoto" />
           </AssociationSet>
+          <AssociationSet Name="AttachedProduct" Association="Self.AttachedProduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Product1" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="TagOfClient" Association="Self.TagOfClient">
             <End Role="Client" EntitySet="Client" />
             <End Role="Tag" EntitySet="Tag" />
@@ -663,14 +662,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище KuznecovAutoservisModelContainer" CdmEntityContainer="Kuznecov_DBEntities">
-          <EntitySetMapping Name="AttachedProduct">
-            <EntityTypeMapping TypeName="KuznecovAutoservisModel.AttachedProduct">
-              <MappingFragment StoreEntitySet="AttachedProduct">
-                <ScalarProperty Name="MainProductID" ColumnName="MainProductID" />
-                <ScalarProperty Name="AttachedProductID" ColumnName="AttachedProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="KuznecovAutoservisModel.Client">
               <MappingFragment StoreEntitySet="Client">
@@ -788,6 +779,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AttachedProduct" TypeName="KuznecovAutoservisModel.AttachedProduct" StoreEntitySet="AttachedProduct">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="ID" ColumnName="MainProductID" />
+            </EndProperty>
+            <EndProperty Name="Product1">
+              <ScalarProperty Name="ID" ColumnName="AttachedProductID" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="TagOfClient" TypeName="KuznecovAutoservisModel.TagOfClient" StoreEntitySet="TagOfClient">
             <EndProperty Name="Client">
               <ScalarProperty Name="ID" ColumnName="ClientID" />

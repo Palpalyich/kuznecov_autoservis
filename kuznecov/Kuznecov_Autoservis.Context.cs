@@ -21,9 +21,9 @@ namespace kuznecov
         {
             if (_context == null)
                 _context = new Kuznecov_DBEntities();
-
             return _context;
         }
+
         public Kuznecov_DBEntities()
             : base("name=Kuznecov_DBEntities")
         {
@@ -34,7 +34,6 @@ namespace kuznecov
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<AttachedProduct> AttachedProduct { get; set; }
         public DbSet<Client> Client { get; set; }
         public DbSet<ClientService> ClientService { get; set; }
         public DbSet<DocumentByService> DocumentByService { get; set; }

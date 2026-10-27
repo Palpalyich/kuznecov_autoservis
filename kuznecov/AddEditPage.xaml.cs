@@ -43,10 +43,10 @@ namespace kuznecov
             if (_currentServise.Cost == 0)
                 errors.AppendLine("Укажите стоимость услуги");
 
-            if (!_currentServise.Discount.HasValue)
+            if (_currentServise.DiscountInt < 100 || _currentServise.DiscountInt > 0)
                 errors.AppendLine("Укажите скидку");
 
-            if (string.IsNullOrWhiteSpace(_currentServise.DurationIn))
+            if (_currentServise.DurationIn == 0)
                 errors.AppendLine("Укажите длительность услуги");
 
             if (errors.Length > 0)
@@ -56,7 +56,7 @@ namespace kuznecov
             }
 
 
-            _currentServise.Discount /= 100;
+            
 
             if (_currentServise.ID == 0)
                 

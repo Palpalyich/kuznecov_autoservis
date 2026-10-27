@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\admin\Downloads\kuznecov-master\kuznecov-master\kuznecov\Kuznecov_autoservese.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\УАТ\Source\Repos\kuznecov_autoservis\kuznecov\Kuznecov_Autoservis.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
