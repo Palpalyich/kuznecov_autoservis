@@ -23,7 +23,6 @@ namespace kuznecov
                 _context = new Kuznecov_DBEntities();
             return _context;
         }
-
         public Kuznecov_DBEntities()
             : base("name=Kuznecov_DBEntities")
         {

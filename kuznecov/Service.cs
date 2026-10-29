@@ -11,8 +11,7 @@ namespace kuznecov
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity.ModelConfiguration.Conventions;
-
+    
     public partial class Service
     {
         public Service()
@@ -27,6 +26,7 @@ namespace kuznecov
         public int DurationIn { get; set; }
         public decimal Cost { get; set; }
         public double Discount { get; set; }
+        public string Description { get; set; }
         public int DiscountInt
         {
             get
@@ -38,8 +38,7 @@ namespace kuznecov
                 Discount = (float)DiscountInt / 100;
             }
         }
-        public string Description { get; set; }
-    
+
         public virtual ICollection<ClientService> ClientService { get; set; }
         public virtual ICollection<ServicePhoto> ServicePhoto { get; set; }
     }

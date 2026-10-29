@@ -54,9 +54,17 @@ namespace kuznecov
                 MessageBox.Show(errors.ToString());
                     return;
             }
+            if (_currentServise.DurationIn == 0)
+                errors.AppendLine("Укажите длительность услуги");
+
+            if (_currentServise.DurationIn > 240)
+                errors.AppendLine("Длительность не может быть больше 240 минут");
+
+            if (_currentServise.DurationIn < 0)
+                errors.AppendLine("Длительность не может быть меньше 0 минут");
 
 
-            
+
 
             if (_currentServise.ID == 0)
                 
