@@ -11,7 +11,8 @@ namespace kuznecov
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows.Media;
+
     public partial class Service
     {
         public Service()
@@ -35,11 +36,56 @@ namespace kuznecov
             }
             set
             {
-                Discount = (float)DiscountInt / 100;
+                Discount = value / 100.0;
             }
         }
 
         public virtual ICollection<ClientService> ClientService { get; set; }
         public virtual ICollection<ServicePhoto> ServicePhoto { get; set; }
+
+        public string OldCost
+        {
+            get
+            {
+                if(Discount > 0)
+                {
+                    return Cost.ToString("0.##");
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public decimal NewCost
+        {
+            get
+            {
+                if(Discount > 0)
+                {
+                    return Cost - Cost * (decimal)Discount;
+                }
+                else
+                {
+                    return (decimal)Cost;
+                }
+            }
+        }
+
+        public SolidColorBrush FonStyle
+        {
+            get
+            {
+                if(Discount > 0)
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
+                }
+                else
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
+                }
+            }
+        }
     }
 }

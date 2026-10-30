@@ -55,17 +55,32 @@ namespace kuznecov
             if (_currentServise.DurationIn < 0)
                 errors.AppendLine("Длительность не может быть меньше 0 минут");
 
-            if (errors.Length > 0)
+            if (!string.IsNullOrWhiteSpace(_currentServise.Title))
+            {
+                string title = _currentServise.Title.Trim();
+
+                bool exists = Kuznecov_DBEntities.GetContext().Service.ToList()
+                    .Any(p => p.ID != _currentServise.ID &&
+                              p.Title != null &&
+                              string.Equals(p.Title.Trim(), title, StringComparison.OrdinalIgnoreCase));
+
+                if (exists)
+                    errors.AppendLine("Уже существует такая услуга");
+            }
+
+                if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                     return;
             }
-
-            if (_currentServise.ID == 0)
                 
+                if(_currentServise.ID == 0)
+            {
                 Kuznecov_DBEntities.GetContext().Service.Add(_currentServise);
+            }
+            
 
-
+            
             try
             {
                 Kuznecov_DBEntities.GetContext().SaveChanges();
